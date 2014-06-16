@@ -524,13 +524,30 @@ class acf_field_page_link extends acf_field {
 		}
 		
 		
-		// force value to array
-		$value = acf_force_type_array( $value );
-		
-		
 		// get posts
 		$value = $this->get_posts( $value );
+		
+		
+		// set choices
+		foreach( array_keys($value) as $i ) {
 			
+			// vars
+			$post = acf_extract_var( $value, $i );
+			
+			
+			// convert $post to permalink
+			if( is_object($post) ) {
+				
+				$post = get_permalink( $post );
+			
+			}
+			
+			
+			// append back to $value
+			$value[ $i ] = $post;
+			
+		}
+		
 			
 		// convert back from array if neccessary
 		if( !$field['multiple'] ) {
