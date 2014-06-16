@@ -456,7 +456,7 @@ function get_field_objects( $post_id = false, $format_value = true, $load_value 
 			
 			// ignore sub fields
 			if( acf_is_sub_field($field) ) {
-			
+				
 				continue;
 				
 			}
@@ -467,6 +467,7 @@ function get_field_objects( $post_id = false, $format_value = true, $load_value 
 		}
  	}
  	
+ 
  	
 	// no value
 	if( empty($value) )

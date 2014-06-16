@@ -510,10 +510,11 @@ function _acf_get_field_by_id( $post_id = 0 ) {
 	$post = get_post( $post_id );
 	
 	
-	// validate
-	if( empty($post) )
-	{
-		return $field;	
+	// bail early if no post, or is not a field
+	if( empty($post) || $post->post_type != 'acf-field' ) {
+	
+		return $field;
+		
 	}
 	
 	
