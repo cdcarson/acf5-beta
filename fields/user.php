@@ -121,7 +121,7 @@ class acf_field_user extends acf_field {
 		// search
 		if( $options['s'] ) {
 		
-			$args['search'] = $options['s'];
+			$args['search'] = '*' . $options['s'] . '*';
 			
 		}
 		
