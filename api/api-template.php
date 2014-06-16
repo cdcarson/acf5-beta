@@ -938,7 +938,7 @@ function acf_form_head() {
 	
 	// verify nonce
 	if( acf_verify_nonce('acf_form') ) {
-	
+		
 		// validate data
 	    if( acf_validate_save_post(true) ) {
 	    	
@@ -964,8 +964,13 @@ function acf_form_head() {
 			
 			
 			// redirect
-			if( !empty($form['return']) )
-			{
+			if( !empty($form['return']) ) {
+				
+				// update redirect %postname%
+				$form['return'] = str_replace('%postname%', get_permalink($form['post_id']), $form['return']);
+				
+				
+				// redirect
 				wp_redirect( $form['return'] );
 				exit;
 			}
@@ -979,6 +984,43 @@ function acf_form_head() {
 	
 	// load acf scripts
 	acf_enqueue_scripts();
+}
+
+
+/*
+*  _validate_save_post
+*
+*  description
+*
+*  @type	function
+*  @date	16/06/2014
+*  @since	5.0.0
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+add_action('acf/validate_save_post', '_validate_save_post');
+
+function _validate_save_post() {
+	
+	// save post_title
+	if( isset($_POST['acf']['_post_title']) ) {
+		
+		// get field
+		$field = acf_get_valid_field(array(
+			'name'		=> '_post_title',
+			'label'		=> 'Title',
+			'type'		=> 'text',
+			'required'	=> true
+		));
+		
+		
+		// validate
+		acf_validate_value( $_POST['acf']['_post_title'], $field, "acf[_post_title]" );
+	
+	}
+	
 }
 
 
@@ -1032,17 +1074,17 @@ function _acf_pre_save_post( $post_id, $form ) {
 	
 	
 	// save post_title
-	if( isset($_POST['acf']['post_title']) ) {
+	if( isset($_POST['acf']['_post_title']) ) {
 		
-		$save['post_title'] = acf_extract_var($_POST['acf'], 'post_title');
+		$save['post_title'] = acf_extract_var($_POST['acf'], '_post_title');
 	
 	}
 	
 	
 	// save post_content
-	if( isset($_POST['acf']['post_content']) ) {
+	if( isset($_POST['acf']['_post_content']) ) {
 		
-		$save['post_content'] = acf_extract_var($_POST['acf'], 'post_content');
+		$save['post_content'] = acf_extract_var($_POST['acf'], '_post_content');
 		
 	}
 	
@@ -1166,10 +1208,11 @@ function acf_form( $args = array() ) {
 	if( $args['post_title'] )
 	{
 		$fields[] = acf_get_valid_field(array(
-			'name'		=> 'post_title',
+			'name'		=> '_post_title',
 			'label'		=> 'Title',
 			'type'		=> 'text',
-			'value'		=> $post_id ? get_post_field('post_title', $post_id) : ''
+			'value'		=> $post_id ? get_post_field('post_title', $post_id) : '',
+			'required'	=> true
 		));
 	}
 	
@@ -1178,7 +1221,7 @@ function acf_form( $args = array() ) {
 	if( $args['post_content'] )
 	{
 		$fields[] = acf_get_valid_field(array(
-			'name'		=> 'post_content',
+			'name'		=> '_post_content',
 			'label'		=> 'Content',
 			'type'		=> 'wysiwyg',
 			'value'		=> $post_id ? get_post_field('post_content', $post_id) : ''
