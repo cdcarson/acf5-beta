@@ -70,36 +70,12 @@ class acf_settings_info {
 		$view = array(
 			'version'		=> acf_get_setting('version'),
 			'have_pro'		=> acf_get_setting('pro'),
-			'have_addons'	=> false,
 			'tabs'			=> array(
 				'new'			=> __("What's New", 'acf'),
 				'changelog'		=> __("Changelog", 'acf')
 			),
 			'active'		=> 'new'
 		);
-		
-		
-		// find add-ons
-		$addons = array(
-			'acf-flexible-content',
-			'acf-gallery',
-			'acf-options-page',
-			'acf-repeater',
-		);
-		
-		
-		// get active plugins
-		$plugins = implode(' ', get_option('active_plugins'));
-		
-		foreach( $addons as $addon ) {
-			
-			if( strpos($plugins, $addon) !== false ) {
-				
-				$view['have_addons'] = true;
-				break;
-			}
-			
-		}
 		
 		
 		// set active tab

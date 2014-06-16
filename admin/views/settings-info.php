@@ -3,12 +3,8 @@
 // extract args
 extract( $args );
 
-// test
-$have_pro = false;
-$have_addons = false;
-
 ?>
-<div class="wrap about-wrap">
+<div class="wrap about-wrap acf-wrap">
 	
 	<h1><?php _e("Welcome to Advanced Custom Fields",'acf'); ?> <?php echo $version; ?></h1>
 	<div class="about-text"><?php printf(__("Thank you for updating! ACF %s is bigger and better than ever before. We hope you like it.", 'acf'), $version); ?></div>
@@ -50,51 +46,27 @@ $have_addons = false;
 		
 		<h2 class="about-headline-callout"><?php _e("Goodbye Add-ons. Hello PRO", 'acf'); ?></h2>
 		
-		<?php if( $have_pro ): ?>
-		<div class="acf-callout success">
-			<h4><?php _e("Systems check", 'acf'); ?></h4>
-			<p><?php _e("Everything looks good. With ACF PRO installed, all premium features will continue to work as normal.", 'acf'); ?></p>
-		</div>
-		<?php elseif( $have_addons ): ?>
-		<div class="acf-callout">
-			<h4><?php _e("Systems check", 'acf'); ?></h4>
-			<p><?php _e("Issue detected. This website makes use of ACF4 add-ons and without ACF5 PRO these premium features will no longer be available.", 'acf'); ?></p>
-			<p><?php _e("Please see below for information regarding the changes to add-ons and your options to either upgrade or rollback.", 'acf'); ?></p>
-		</div>
-		<?php else: ?>
-		<div class="acf-callout success">
-			<h4><?php _e("Systems check", 'acf'); ?></h4>
-			<p><?php _e("Everything looks good. This website does not use premium add-ons, and is not affected by this change.", 'acf'); ?></p>
-		</div>
-		<?php endif; ?>
-		
 		<div class="feature-section col three-col">
 		
 			<div class="col">
 				<h4><?php _e("Introducing ACF PRO", 'acf'); ?></h4>
-				<p><?php printf(__('Alongside ACF5 is the all new <a href="%s">ACF5 PRO</a> version! This PRO version includes all 4 premium add-ons (repeater field, gallery field, flexible content field and options page) and with both personal and developer licenses available, premium functionality is more affordable than ever before!', 'acf'), esc_url('http://advancedcustomfields.com/pro')); ?></p>
+				<p><?php _e("We're changing the way premium functionality is delivered in an exiting way!", 'acf'); ?></p>
+				<p><?php printf(__('All 4 premium add-ons have been combined into a new <a href="%s">Pro version of ACF</a>. With both personal and developer licenses available, premium functionality is more affordable and accessible than ever before!', 'acf'), esc_url('http://www.advancedcustomfields.com/pro')); ?></p>
 			</div>
 			
-			<?php if( !$have_pro && $have_addons ): ?>
 			<div class="col">
-				<h4><?php _e("Upgrade to PRO", 'acf'); ?></h4>
-				<p><?php printf(__('To help make the migration from ACF4 add-ons to ACF5 PRO as easy as possible, you can purchase the ACF5 PRO plugin at a heavily reduced rate via your <a href="%s">online account</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/store/account/')); ?></p>
-				<p><?php printf(__('You can then simply update from ACF5 to ACF5 PRO by following this <a href="%s">upgrade guide</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/upgrading-v4-v5/')); ?></p>
+				<h4><?php _e("Powerful Features", 'acf'); ?></h4>
+				<p><?php _e("ACF PRO contains powerful features such as repeatable data, flexible content layouts, a beautiful gallery field and the ability to create extra admin options pages!", 'acf'); ?></p>
+				<p><?php printf(__('Read more about <a href="%s">ACF PRO features</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/pro')); ?></p>
 			</div>
-			<?php else: ?>
-			<div class="col">
-				<h4><?php _e("New features", 'acf'); ?></h4>
-				<p><?php _e("ACF PRO contains awesome features such as repeatable data, flexible content layouts, a beautiful gallery field and the ability to create extra admin options pages!", 'acf'); ?></p>
-				<p><?php printf(__('To find out more, be sure to read <a href="%s">What’s new in version 5</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/whats-new-version-5/')); ?></p>
-			</div>
-			<?php endif; ?>
 			
 			<div class="col last-feature">
-				<h4><?php _e("Support", 'acf'); ?></h4>
-				<p><?php _e("Please contact our support team and view the community forums for help with any issues you experience during this update.", 'acf'); ?></p>
-				<p><?php printf(__('If time is critical, you can <a href="%s">roll back to ACF4</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/upgrading-v4-v5/')); ?></p>
+				<h4><?php _e("Easy Upgrading", 'acf'); ?></h4>
+				<p><?php printf(__('To help make upgrading easy, <a href="%s">login to your store account</a> and claim a free copy of ACF PRO!', 'acf'), esc_url('http://www.advancedcustomfields.com/my-account/')); ?></p>
+				<p><?php printf(__('We also wrote an <a href="%s">upgrade guide</a> to answer any questions, but if you do have one, please contact our support team via the <a href="%s">help desk</a>', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/upgrading-v4-v5/'), esc_url('http://support.advancedcustomfields.com')); ?>
+				
 			</div>
-			
+						
 		</div>
 		
 		<hr />
