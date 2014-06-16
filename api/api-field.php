@@ -856,6 +856,49 @@ function acf_update_field_wp_unique_post_slug( $slug, $post_ID, $post_status, $p
 
 
 /*
+*  acf_duplicate_fields
+*
+*  This function will duplicate an array of fields and update conditional logic references
+*
+*  @type	function
+*  @date	16/06/2014
+*  @since	5.0.0
+*
+*  @param	$fields (array)
+*  @param	$new_parent (int)
+*  @return	n/a
+*/
+
+function acf_duplicate_fields( $fields, $new_parent = 0 ) {
+	
+	// bail early if no fields
+	if( empty($fields) ) {
+		
+		return;
+		
+	}
+	
+	
+	// create new field keys (for conditional logic fixes)
+	foreach( $fields as $field ) {
+		
+		acf_update_setting( 'duplicate_key_' . $field['key'] , uniqid('field_') );
+		
+	}
+	
+	
+	// duplicate fields
+	foreach( $fields as $field ) {
+	
+		// duplicate
+		acf_duplicate_field( $field['ID'], $new_parent );
+		
+	}
+	
+}
+
+
+/*
 *  acf_duplicate_field
 *
 *  This function will duplicate a field and attach it to the given field group ID
@@ -865,11 +908,11 @@ function acf_update_field_wp_unique_post_slug( $slug, $post_ID, $post_status, $p
 *  @since	5.0.0
 *
 *  @param	$selector (int)
-*  @param	$parent_id (int)
+*  @param	$new_parent (int)
 *  @return	$field (array) the new field
 */
 
-function acf_duplicate_field( $selector = 0, $parent_id = 0 ){
+function acf_duplicate_field( $selector = 0, $new_parent = 0 ){
 	
 	// disable JSON to avoid conflicts between DB and JSON
 	acf_disable_local();
@@ -880,22 +923,96 @@ function acf_duplicate_field( $selector = 0, $parent_id = 0 ){
 	
 	
 	// bail early if field did not load correctly
-	if( empty($field) )
-	{
+	if( empty($field) ) {
+	
 		return false;
+		
 	}
 	
 	
 	// update ID
 	$field['ID'] = false;
-	$field['key'] = uniqid('field_');
 	
 	
-	// update field group
-	if( $parent_id )
-	{
-		$field['parent'] = $parent_id;
+	// try duplicate keys
+	$field['key'] = acf_get_setting( 'duplicate_key_' . $field['key'] );
+	
+	
+	// default key
+	if( empty($field['key']) ) {
+		
+		$field['key'] = uniqid('field_');
+			
 	}
+	
+	
+	// update parent
+	if( $new_parent ) {
+	
+		$field['parent'] = $new_parent;
+		
+	}
+	
+	
+	// update conditional logic references (because field keys have changed)
+	if( !empty($field['conditional_logic']) ) {
+	
+		// extract groups
+		$groups = acf_extract_var( $field, 'conditional_logic' );
+		
+		
+		// loop over groups
+		foreach( array_keys($groups) as $g ) {
+			
+			// extract group
+			$group = acf_extract_var( $groups, $g );
+			
+			
+			// bail early if empty
+			if( empty($group) ) {
+				
+				continue;
+				
+			}
+			
+			
+			// loop over rules
+			foreach( array_keys($group) as $r ) {
+				
+				// extract rule
+				$rule = acf_extract_var( $group, $r );
+				
+				
+				// vars
+				$new_key = acf_get_setting( 'duplicate_key_' . $rule['field'] );
+				
+				
+				// update rule with new key
+				if( $new_key ) {
+					
+					$rule['field'] = $new_key;
+					
+				}
+				
+				
+				// append to group
+				$group[ $r ] = $rule;
+				
+			}
+			
+			
+			// append to groups
+			$groups[ $g ] = $group;
+			
+		}
+		
+		
+		// update conditional logic
+		$field['conditional_logic'] = $groups;
+		
+		
+	}
+	
 	
 	
 	// filter for 3rd party customization

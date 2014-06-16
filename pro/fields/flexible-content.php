@@ -1102,17 +1102,8 @@ class acf_field_flexible_content extends acf_field {
 		$field = acf_update_field( $field );
 		
 		
-		// loop through sub fields
-		if( !empty($sub_fields) ) {
-		
-			foreach( $sub_fields as $sub_field ) {
-			
-				// duplicate sub field
-				acf_duplicate_field( $sub_field['ID'], $field['ID'] );
-				
-			}
-			
-		}
+		// duplicate sub fields
+		acf_duplicate_fields( $sub_fields, $field['ID'] );
 		
 		
 		// return		

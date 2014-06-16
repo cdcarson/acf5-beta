@@ -563,16 +563,11 @@ function acf_duplicate_field_group( $selector = 0, $new_post_id = 0 ) {
 	
 	
 	// get fields
-	$fields = acf_get_fields($orig_field_group);
+	$fields = acf_get_fields( $orig_field_group );
 	
 	
-	if( !empty($fields) )
-	{
-		foreach( $fields as $field )
-		{
-			acf_duplicate_field( $field['ID'], $field_group['ID'] );
-		}
-	}
+	// duplicate fields
+	acf_duplicate_fields( $fields, $field_group['ID'] );
 	
 	
 	// action for 3rd party customization
