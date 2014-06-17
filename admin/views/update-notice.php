@@ -22,9 +22,12 @@ $nonce2 = wp_create_nonce( 'rollback-acf_' . $rollback );
 			<h2><?php _e("ACF PRO Required",'acf'); ?></h2>
 			
 			<p><?php printf(__("Thank you for updating to %s v%s!", 'acf'), acf_get_setting('name'), $version ); ?><br />
-			<?php printf(__("We have detected that this website is currently using premium add-ons (%s) which are no longer compatible. Don't panic, you can roll back to an earlier version and continue using ACF as you know it until you are ready to upgrade to ACF PRO.", 'acf'), implode(', ', $addons) ); ?></p>
+			 
+			<?php printf(__("We have detected an issue which requires your attention: This website makes use of premium add-ons (%s) which are no longer compatible with ACF.", 'acf'), implode(', ', $addons) ); ?></p>
 			
-			<p><a id="acf-notice-action" href="<?php echo admin_url('update.php?action=upgrade-plugin&plugin=' . $basename . '&_wpnonce=' . $nonce1 . '&_acfrollback=' . $nonce2 ); ?>" class="acf-button blue"><?php printf(__("Roll back to ACF v%s", 'acf'), $rollback ); ?></a> <a id="acf-notice-action" href="#" class="acf-button"><?php _e("Learn more about ACF PRO", 'acf'); ?></a></p>
+			<p><?php printf(__("Don't panic, you can simply roll back the plugin and continue using ACF as you know it!", 'acf') ); ?></p>
+			
+			<p><a id="acf-notice-action" href="<?php echo admin_url('update.php?action=upgrade-plugin&plugin=' . $basename . '&_wpnonce=' . $nonce1 . '&_acfrollback=' . $nonce2 ); ?>" class="acf-button blue"><?php printf(__("Roll back to ACF v%s", 'acf'), $rollback ); ?></a> <a id="acf-notice-action" href="#" class="acf-button"><?php _e("Learn why ACF PRO is required for my site", 'acf'); ?></a></p>
 			
 			<?php else: ?>	
 				
