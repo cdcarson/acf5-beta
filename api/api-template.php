@@ -1235,7 +1235,7 @@ function acf_form( $args = array() ) {
 		
 		foreach( $args['fields'] as $selector ) {
 		
-			$fields[] = get_field_object( $selector, $post_id, false, false);
+			$fields[] = acf_get_field( $selector );
 			
 		}
 		
