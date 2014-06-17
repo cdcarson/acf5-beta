@@ -48,7 +48,7 @@
 		toggle : function( $a ){
 			
 			// reference
-			var _this = this;
+			var self = this;
 			
 			
 			// vars
@@ -69,11 +69,11 @@
 				
 				if( acf.is_field( $(this), {key : key} ) )
 				{
-					_this.show_tab_fields( $(this) );
+					self.show_tab_fields( $(this) );
 				}
 				else
 				{
-					_this.hide_tab_fields( $(this) );
+					self.hide_tab_fields( $(this) );
 				}
 				
 			});
@@ -82,7 +82,9 @@
 		
 		show_tab_fields : function( $field ) {
 			
+			// debug
 			//console.log('show tab fields %o', $field);
+			
 			$field.nextAll('.acf-field').each(function(){
 				
 				// bail early if hid another tab
@@ -99,6 +101,9 @@
 		},
 		
 		hide_tab_fields : function( $field ) {
+			
+			// debug
+			//console.log('hide tab fields %o', $field);
 			
 			$field.nextAll('.acf-field').each(function(){
 				
@@ -117,15 +122,15 @@
 		refresh : function( $el ){
 			
 			// reference
-			var _this = this;
+			var self = this;
 			
 			
 			// trigger
 			$el.find('.acf-tab-group').each(function(){
 				
 				$(this).find('.acf-tab-button:first').each(function(){
-					
-					_this.toggle( $(this) );
+				
+					self.toggle( $(this) );
 					
 				});
 				

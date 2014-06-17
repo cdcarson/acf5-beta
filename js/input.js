@@ -4791,7 +4791,7 @@ acf.add_action('ready append', function( $el ){
 		toggle : function( $a ){
 			
 			// reference
-			var _this = this;
+			var self = this;
 			
 			
 			// vars
@@ -4812,11 +4812,11 @@ acf.add_action('ready append', function( $el ){
 				
 				if( acf.is_field( $(this), {key : key} ) )
 				{
-					_this.show_tab_fields( $(this) );
+					self.show_tab_fields( $(this) );
 				}
 				else
 				{
-					_this.hide_tab_fields( $(this) );
+					self.hide_tab_fields( $(this) );
 				}
 				
 			});
@@ -4825,7 +4825,9 @@ acf.add_action('ready append', function( $el ){
 		
 		show_tab_fields : function( $field ) {
 			
+			// debug
 			//console.log('show tab fields %o', $field);
+			
 			$field.nextAll('.acf-field').each(function(){
 				
 				// bail early if hid another tab
@@ -4842,6 +4844,9 @@ acf.add_action('ready append', function( $el ){
 		},
 		
 		hide_tab_fields : function( $field ) {
+			
+			// debug
+			//console.log('hide tab fields %o', $field);
 			
 			$field.nextAll('.acf-field').each(function(){
 				
@@ -4860,15 +4865,15 @@ acf.add_action('ready append', function( $el ){
 		refresh : function( $el ){
 			
 			// reference
-			var _this = this;
+			var self = this;
 			
 			
 			// trigger
 			$el.find('.acf-tab-group').each(function(){
 				
 				$(this).find('.acf-tab-button:first').each(function(){
-					
-					_this.toggle( $(this) );
+				
+					self.toggle( $(this) );
 					
 				});
 				
