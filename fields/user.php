@@ -120,8 +120,13 @@ class acf_field_user extends acf_field {
 				
 		// search
 		if( $options['s'] ) {
-		
+			
+			// append to $args
 			$args['search'] = '*' . $options['s'] . '*';
+			
+			
+			// add filter to modify search colums
+			add_filter('user_search_columns', array($this, 'user_search_columns'), 10, 1);
 			
 		}
 		
@@ -130,11 +135,10 @@ class acf_field_user extends acf_field {
 		$args = apply_filters('acf/fields/user/query', $args, $field, $options['post_id']);
 		$args = apply_filters('acf/fields/user/query/name=' . $field['name'], $args, $field, $options['post_id'] );
 		$args = apply_filters('acf/fields/user/query/key=' . $field['key'], $args, $field, $options['post_id'] );
-			
+		
 		
 		// get users
 		$users = get_users( $args );
-		
 		
 		if( !empty($users) && !empty($editable_roles) ) {
 			
@@ -155,7 +159,7 @@ class acf_field_user extends acf_field {
 						
 						
 						// append to $this_users
-						$this_users[ $user->ID ] = ucfirst( $user->display_name );
+						$this_users[ $user->ID ] = ucfirst( $user->display_name ) . ' (' .  $user->user_login . ')';
 						
 					}
 					
@@ -215,6 +219,25 @@ class acf_field_user extends acf_field {
 			
 	}
 	
+	
+	/*
+	*  user_search_columns
+	*
+	*  This function will modify the columns which the user AJAX search looks in
+	*
+	*  @type	function
+	*  @date	17/06/2014
+	*  @since	5.0.0
+	*
+	*  @param	$columns (array)
+	*  @return	$columns
+	*/
+	
+	function user_search_columns( $columns ) {
+		
+		return array('user_login', 'display_name');
+		
+	}
 	
 	/*
 	*  render_field()
