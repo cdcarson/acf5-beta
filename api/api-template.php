@@ -967,8 +967,8 @@ function acf_form_head() {
 			// redirect
 			if( !empty($form['return']) ) {
 				
-				// update redirect %postname%
-				$form['return'] = str_replace('%postname%', get_permalink($form['post_id']), $form['return']);
+				// update %placeholders%
+				$form['return'] = str_replace('%post_url%', get_permalink($form['post_id']), $form['return']);
 				
 				
 				// redirect
