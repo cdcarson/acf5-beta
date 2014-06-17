@@ -90,7 +90,7 @@
 			
 			// show entire column
 			$td.filter('.hidden-by-conditional-logic').addClass('appear-empty');
-			$th.show();
+			$th.removeClass('hidden-by-conditional-logic');
 			
 			
 			// render table
@@ -131,7 +131,7 @@
 			if( $td.filter('.hidden-by-conditional-logic').length == $td.length ) {
 				
 				$td.removeClass('appear-empty');
-				$th.hide();
+				$th.addClass('hidden-by-conditional-logic');
 				
 			}
 			
@@ -170,8 +170,7 @@
 			
 			
 			// update $th
-			$th = $th.not('.order, .remove');
-			$th = $th.not(':hidden');
+			$th = $th.not('.order, .remove, .hidden-by-conditional-logic');
 				
 			
 			// set custom widths first
@@ -203,12 +202,8 @@
 			});
 			
 			
-			// update $th
-			$th = $th.not('[data-width]');
-			
-			
 			// set custom widths first
-			$th.each(function(){
+			$th.not('[data-width]').each(function(){
 				
 				// bail early if hit limit
 				if( (count+1) == $th.length ) {
