@@ -168,7 +168,7 @@ function _migrate_field_group_500( $ofg ) {
 	}
 	
 	
-	// Note: acf_update_field_group will call the acf_get_valid_field_group function and apply 'compatbility' changes
+	// Note: acf_update_field_group will call the acf_get_valid_field_group function and apply 'compatibility' changes
 	
 	
 	// save field group
