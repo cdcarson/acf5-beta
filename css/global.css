@@ -114,6 +114,15 @@ img.acf-fw {
 .has-value .hide-if-value { display: none; }
 
 
+/* select2 WP animation fix */
+.select2-search-choice-close {
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none; 	
+	transition: none;
+}
+
+
 /*---------------------------------------------------------------------------------------------
 *
 *  callout
