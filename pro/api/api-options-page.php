@@ -418,7 +418,8 @@ function acf_set_options_page_title( $title = 'Options' ) {
 	
 	acf_update_options_page(array(
 		'menu_slug'		=> 'acf-options',
-		'page_title'	=> $title
+		'page_title'	=> $title,
+		'menu_title'	=> $title
 	));
 	
 }
