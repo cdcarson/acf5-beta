@@ -196,8 +196,8 @@ class acf_field_text extends acf_field {
 			'type'			=> 'select',
 			'name'			=> 'formatting',
 			'choices'		=> array(
-				'none'			=>	__("No formatting",'acf'),
-				'html'			=>	__("Convert HTML into tags",'acf')
+				'html'			=> __("Render HTML as tags",'acf'),
+				'none'			=> __("Render HTML as plain text",'acf')
 			)
 		));
 		
@@ -246,7 +246,7 @@ class acf_field_text extends acf_field {
 			
 		} elseif( $field['formatting'] == 'html' ) {
 		
-			$value = nl2br($value);
+			// do nothing
 			
 		}
 		
