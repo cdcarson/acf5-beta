@@ -231,13 +231,9 @@ class acf_field_text extends acf_field {
 		}
 		
 		
-		// format for text input
-		$value = htmlspecialchars($value, ENT_QUOTES);
-		
-		
 		// bail early if not formatting for template use
 		if( !$template ) {
-		
+			
 			return $value;
 			
 		}
