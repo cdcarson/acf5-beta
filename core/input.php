@@ -497,7 +497,7 @@ function acf_validate_value( $value, $field, $input ) {
 	if( $field['required'] ) {
 		
 		// valid is set to false if the value is empty, but allow 0 as a valid value
-		if( empty($value) && $value != '0' ) {
+		if( empty($value) && !is_numeric($value) ) {
 			
 			$valid = false;
 			
