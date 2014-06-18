@@ -67,7 +67,15 @@ function acf_get_valid_options_page( $page = '' ) {
 	}
 	
 	
-	// slug
+	// page_title (allows user to define page with just page_title or title)
+	if( empty($page['menu_title']) ) {
+	
+		$page['menu_title'] = $page['page_title'];
+		
+	}
+	
+	
+	// menu_slug
 	if( empty($page['menu_slug']) ) {
 	
 		$page['menu_slug'] = 'acf-options-' . sanitize_title( $page['menu_title'] );
