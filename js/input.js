@@ -3456,7 +3456,7 @@ get_field_data : function( $el, name ){
 	*  @return	N/A
 	*/
 	
-	$(document).on('click', '.acf-google-map .acf-sprite-delete', function( e ){
+	$(document).on('click', '.acf-google-map a[data-name="clear-location"]', function( e ){
 		
 		e.preventDefault();
 		
@@ -3467,7 +3467,7 @@ get_field_data : function( $el, name ){
 	});
 	
 	
-	$(document).on('click', '.acf-google-map .acf-sprite-locate', function( e ){
+	$(document).on('click', '.acf-google-map a[data-name="find-location"]', function( e ){
 		
 		e.preventDefault();
 		

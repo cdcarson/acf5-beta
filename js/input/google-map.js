@@ -457,7 +457,7 @@
 	*  @return	N/A
 	*/
 	
-	$(document).on('click', '.acf-google-map .acf-sprite-delete', function( e ){
+	$(document).on('click', '.acf-google-map a[data-name="clear-location"]', function( e ){
 		
 		e.preventDefault();
 		
@@ -468,7 +468,7 @@
 	});
 	
 	
-	$(document).on('click', '.acf-google-map .acf-sprite-locate', function( e ){
+	$(document).on('click', '.acf-google-map a[data-name="find-location"]', function( e ){
 		
 		e.preventDefault();
 		

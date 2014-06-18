@@ -132,14 +132,14 @@ class acf_field_google_map extends acf_field {
 	<div class="title acf-soh">
 		
 		<div class="has-value">
-			<a href="#" class="acf-icon light acf-soh-target" title="<?php _e("Clear location", 'acf'); ?>">
+			<a href="#" data-name="clear-location" class="acf-icon light acf-soh-target" title="<?php _e("Clear location", 'acf'); ?>">
 				<i class="acf-sprite-delete"></i>
 			</a>
 			<h4><?php echo $field['value']['address']; ?></h4>
 		</div>
 		
 		<div class="no-value">
-			<a href="#" class="acf-icon light acf-soh-target" title="<?php _e("Find current location", 'acf'); ?>">
+			<a href="#" data-name="find-location" class="acf-icon light acf-soh-target" title="<?php _e("Find current location", 'acf'); ?>">
 				<i class="acf-sprite-locate"></i>
 			</a>
 			<input type="text" placeholder="<?php _e("Search for address...",'acf'); ?>" class="search" />
