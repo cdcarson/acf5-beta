@@ -23,6 +23,8 @@ class acf_compatibility {
 		
 		// specific fields
 		add_filter('acf/get_valid_field/type=textarea',		array($this, 'get_valid_textarea_field'), 20, 1);
+		add_filter('acf/get_valid_field/type=relationship',	array($this, 'get_valid_relationship_field'), 20, 1);
+		add_filter('acf/get_valid_field/type=post_object',	array($this, 'get_valid_relationship_field'), 20, 1);
 		add_filter('acf/get_valid_field/type=image',		array($this, 'get_valid_image_field'), 20, 1);
 		add_filter('acf/get_valid_field/type=file',			array($this, 'get_valid_image_field'), 20, 1);
 		add_filter('acf/get_valid_field/type=wysiwyg',		array($this, 'get_valid_wysiwyg_field'), 20, 1);
@@ -133,6 +135,42 @@ class acf_compatibility {
 		// return
 		return $field;
 		
+	}
+	
+	
+	/*
+	*  get_valid_relationship_field
+	*
+	*  This function will provide compatibility with ACF4 fields
+	*
+	*  @type	function
+	*  @date	23/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$field (array)
+	*  @return	$field
+	*/
+	
+	function get_valid_relationship_field( $field ) {
+		
+		// remove 'all' from post_type
+		if( is_array($field['post_type']) && in_array('all', $field['post_type']) ) {
+			
+			$field['post_type'] = array();
+			
+		}
+		
+		
+		// remove 'all' from taxonomy
+		if( is_array($field['taxonomy']) && in_array('all', $field['taxonomy']) ) {
+			
+			$field['taxonomy'] = array();
+			
+		}
+		
+		
+		// return
+		return $field;
 	}
 	
 	
