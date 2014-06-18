@@ -22,6 +22,7 @@ class acf_compatibility {
 		
 		
 		// specific fields
+		add_filter('acf/get_valid_field/type=textarea',		array($this, 'get_valid_textarea_field'), 20, 1);
 		add_filter('acf/get_valid_field/type=image',		array($this, 'get_valid_image_field'), 20, 1);
 		add_filter('acf/get_valid_field/type=file',			array($this, 'get_valid_image_field'), 20, 1);
 		add_filter('acf/get_valid_field/type=wysiwyg',		array($this, 'get_valid_wysiwyg_field'), 20, 1);
@@ -132,6 +133,35 @@ class acf_compatibility {
 		// return
 		return $field;
 		
+	}
+	
+	
+	/*
+	*  get_valid_textarea_field
+	*
+	*  This function will provide compatibility with ACF4 fields
+	*
+	*  @type	function
+	*  @date	23/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$field (array)
+	*  @return	$field
+	*/
+	
+	function get_valid_textarea_field( $field ) {
+		
+		// save_format is now return_format
+		if( $field['formatting'] == 'br' ) {
+			
+			$field['formatting'] = 'none';
+			$field['new_lines'] = 'br';
+			
+		}
+		
+		
+		// return
+		return $field;
 	}
 	
 	

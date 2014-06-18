@@ -37,6 +37,7 @@ class acf_field_textarea extends acf_field {
 		$this->defaults = array(
 			'default_value'	=> '',
 			'formatting' 	=> 'html',
+			'new_lines'		=> 'wpautop',
 			'maxlength'		=> '',
 			'placeholder'	=> '',
 			'readonly'		=> 0,
@@ -171,14 +172,27 @@ class acf_field_textarea extends acf_field {
 		
 		// formatting
 		acf_render_field_setting( $field, array(
+			'label'			=> __('New Lines','acf'),
+			'instructions'	=> __('Effects value on front end','acf'),
+			'type'			=> 'select',
+			'name'			=> 'new_lines',
+			'choices'		=> array(
+				'wpautop'		=> __("Automatically add paragraphs",'acf'),
+				'br'			=> __("Automatically add &lt;br&gt;",'acf'),
+				'none'			=> __("None",'acf')
+			)
+		));
+		
+		
+		// formatting
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Formatting','acf'),
 			'instructions'	=> __('Effects value on front end','acf'),
 			'type'			=> 'select',
 			'name'			=> 'formatting',
 			'choices'		=> array(
-				'html'			=> __("Automatically add paragraphs",'acf'),
-				'br'			=> __("Automatically add &lt;br&gt;",'acf'),
-				'none'			=> __("Plain text",'acf')
+				'html'			=> __("Render HTML as tags",'acf'),
+				'none'			=> __("Render HTML as plain text",'acf')
 			)
 		));
 		
@@ -229,9 +243,17 @@ class acf_field_textarea extends acf_field {
 			
 		} elseif( $field['formatting'] == 'html' ) {
 			
+			// do nothing
+			
+		}
+		
+		
+		// new lines
+		if( $field['new_lines'] == 'wpautop' ) {
+			
 			$value = wpautop($value);
 			
-		} elseif( $field['formatting'] == 'br' ) {
+		} elseif( $field['new_lines'] == 'br' ) {
 			
 			$value = nl2br($value);
 			
