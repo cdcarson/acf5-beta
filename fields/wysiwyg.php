@@ -280,6 +280,20 @@ class acf_field_wysiwyg extends acf_field {
 		$id = 'wysiwyg-' . $field['id'] . '-' . uniqid();
 		
 		
+		// filter value for editor
+		if( user_can_richedit() ) {
+			
+			add_filter('the_editor_content', 'wp_richedit_pre');
+			
+		} else {
+			
+			add_filter('the_editor_content', 'wp_htmledit_pre');
+			
+		}
+		
+		$field['value'] = apply_filters( 'the_editor_content', $field['value'] );
+		
+		
 		?>
 		<div id="wp-<?php echo $id; ?>-wrap" class="acf-wysiwyg-wrap wp-core-ui wp-editor-wrap tmce-active" data-toolbar="<?php echo $field['toolbar']; ?>" data-upload="<?php echo $field['media_upload']; ?>">
 			<?php if( user_can_richedit() && $field['media_upload'] ): ?>
@@ -290,23 +304,11 @@ class acf_field_wysiwyg extends acf_field {
 				</div>
 			<?php endif; ?>
 			<div id="wp-<?php echo $id; ?>-editor-container" class="wp-editor-container">
-				<textarea id="<?php echo $id; ?>" class="wp-editor-area" name="<?php echo $field['name']; ?>" ><?php 
-				
-				if( user_can_richedit() ) {
-				
-					echo wp_richedit_pre( $field['value'] );
-					
-				} else {
-					
-					echo wp_htmledit_pre( $field['value'] );
-					
-				}
-				
-				?></textarea>
+				<textarea id="<?php echo $id; ?>" class="wp-editor-area" name="<?php echo $field['name']; ?>"><?php echo $field['value']; ?></textarea>
 			</div>
 		</div>
-		
 		<?php
+		
 	}
 	
 	
