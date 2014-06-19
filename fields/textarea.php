@@ -37,7 +37,7 @@ class acf_field_textarea extends acf_field {
 		$this->defaults = array(
 			'default_value'	=> '',
 			'formatting' 	=> 'html',
-			'new_lines'		=> 'wpautop',
+			'new_lines'		=> '',
 			'maxlength'		=> '',
 			'placeholder'	=> '',
 			'readonly'		=> 0,
@@ -133,6 +133,14 @@ class acf_field_textarea extends acf_field {
 	
 	function render_field_settings( $field ) {
 		
+		// ACF4 migration
+		if( empty($field['ID']) ) {
+			
+			$field['new_lines'] = 'wpautop';
+			
+		}
+		
+		
 		// default_value
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
@@ -173,13 +181,13 @@ class acf_field_textarea extends acf_field {
 		// formatting
 		acf_render_field_setting( $field, array(
 			'label'			=> __('New Lines','acf'),
-			'instructions'	=> __('Effects value on front end','acf'),
+			'instructions'	=> __('Controls how new lines are rendered','acf'),
 			'type'			=> 'select',
 			'name'			=> 'new_lines',
 			'choices'		=> array(
 				'wpautop'		=> __("Automatically add paragraphs",'acf'),
 				'br'			=> __("Automatically add &lt;br&gt;",'acf'),
-				'none'			=> __("None",'acf')
+				''				=> __("No Formatting",'acf')
 			)
 		));
 		
@@ -187,7 +195,7 @@ class acf_field_textarea extends acf_field {
 		// formatting
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Formatting','acf'),
-			'instructions'	=> __('Effects value on front end','acf'),
+			'instructions'	=> __('Controls how HTML is rendered','acf'),
 			'type'			=> 'select',
 			'name'			=> 'formatting',
 			'choices'		=> array(
