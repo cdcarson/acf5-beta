@@ -516,6 +516,14 @@ class acf_field_page_link extends acf_field {
 	
 	function format_value( $value, $post_id, $field, $template ) {
 		
+		// ACF4 null
+		if( $value === 'null' ) {
+		
+			return false;
+			
+		}
+		
+		
 		// bail early if no value or not for template
 		if( empty($value) || !$template ) {
 			
