@@ -107,6 +107,7 @@
 .acf-field-list .field .field-info li {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	word-wrap: break-word;
 }
 
 .acf-field-list .field .field-info .acf-icon {
