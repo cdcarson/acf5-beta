@@ -294,38 +294,9 @@ class acf_compatibility {
 			$display_format = acf_extract_var( $field, 'display_format' );
 			
 			
-			// php_to_js
-			$php_to_js = array(
-				
-				// Year
-				'Y'	=> 'yy',	// Numeric, 4 digits 								1999, 2003
-				'y'	=> 'y',		// Numeric, 2 digits 								99, 03
-				
-				
-				// Month
-				'm'	=> 'mm',	// Numeric, with leading zeros  					01–12
-				'n'	=> 'm',		// Numeric, without leading zeros  					1–12
-				'F'	=> 'MM',	// Textual full   									January – December
-				'M'	=> 'M',		// Textual three letters    						Jan - Dec 
-				
-				
-				// Weekday
-				'l'	=> 'DD',	// Full name  (lowercase 'L') 						Sunday – Saturday
-				'D'	=> 'D',		// Three letter name 	 							Mon – Sun 
-				
-				
-				// Day of Month
-				'd'	=> 'dd',	// Numeric, with leading zeros						01–31
-				'j'	=> 'd',		// Numeric, without leading zeros 					1–31
-				'S'	=> '',		// The English suffix for the day of the month  	st, nd or th in the 1st, 2nd or 15th. 
-			);
-			
-			foreach( $php_to_js as $php => $js ) {
-			
-				$date_format = str_replace($js, $php, $date_format);
-				$display_format = str_replace($js, $php, $display_format);
-				
-			}
+			// convert from js to php
+			$date_format = acf_convert_date_to_php( $date_format );
+			$display_format = acf_convert_date_to_php( $display_format );
 			
 			
 			// append settings

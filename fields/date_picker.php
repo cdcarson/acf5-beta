@@ -99,57 +99,23 @@ class acf_field_date_picker extends acf_field {
 		
 		// vars
 		$e = '';
-		$el_atts = array(
+		$div = array(
 			'class'					=> 'acf-date_picker',
-			'data-display_format'	=> $field['display_format'],
+			'data-display_format'	=> acf_convert_date_to_js($field['display_format']),
 			'data-first_day'		=> $field['first_day'],
 		);
-		$input_atts = array(
+		$input = array(
 			'id'					=> $field['id'],
 			'class' 				=> 'input-alt',
 			'type'					=> 'hidden',
 			'name'					=> $field['name'],
 			'value'					=> $field['value'],
 		);
-		
-		
-		// php_to_js
-		$php_to_js = array(
 			
-			// Year
-			'Y'	=> 'yy',	// Numeric, 4 digits 								1999, 2003
-			'y'	=> 'y',		// Numeric, 2 digits 								99, 03
-			
-			
-			// Month
-			'm'	=> 'mm',	// Numeric, with leading zeros  					01–12
-			'n'	=> 'm',		// Numeric, without leading zeros  					1–12
-			'F'	=> 'MM',	// Textual full   									January – December
-			'M'	=> 'M',		// Textual three letters    						Jan - Dec 
-			
-			
-			// Weekday
-			'l'	=> 'DD',	// Full name  (lowercase 'L') 						Sunday – Saturday
-			'D'	=> 'D',		// Three letter name 	 							Mon – Sun 
-			
-			
-			// Day of Month
-			'd'	=> 'dd',	// Numeric, with leading zeros						01–31
-			'j'	=> 'd',		// Numeric, without leading zeros 					1–31
-			'S'	=> '',		// The English suffix for the day of the month  	st, nd or th in the 1st, 2nd or 15th. 
-		);
-		
-		
-		foreach( $php_to_js as $php => $js ) {
-			
-			$el_atts['data-display_format'] = str_replace($php, $js, $el_atts['data-display_format']);
-			
-		}
-		
 
 		// html
-		$e .= '<div ' . acf_esc_attr($el_atts) . '>';
-			$e .= '<input ' . acf_esc_attr($input_atts). '/>';
+		$e .= '<div ' . acf_esc_attr($div) . '>';
+			$e .= '<input ' . acf_esc_attr($input). '/>';
 			$e .= '<input type="text" value="" class="input" />';
 		$e .= '</div>';
 		

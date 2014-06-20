@@ -2113,6 +2113,130 @@ function acf_decode_choices( $string = '' ) {
 }
 
 
+
+/*
+*  acf_convert_date_to_php
+*
+*  This fucntion converts a date format string from JS to PHP
+*
+*  @type	function
+*  @date	20/06/2014
+*  @since	5.0.0
+*
+*  @param	$date (string)
+*  @return	$date (string)
+*/
+
+acf_update_setting('php_to_js_date_formats', array(
+
+	// Year
+	'Y'	=> 'yy',	// Numeric, 4 digits 								1999, 2003
+	'y'	=> 'y',		// Numeric, 2 digits 								99, 03
+	
+	
+	// Month
+	'm'	=> 'mm',	// Numeric, with leading zeros  					01–12
+	'n'	=> 'm',		// Numeric, without leading zeros  					1–12
+	'F'	=> 'MM',	// Textual full   									January – December
+	'M'	=> 'M',		// Textual three letters    						Jan - Dec 
+	
+	
+	// Weekday
+	'l'	=> 'DD',	// Full name  (lowercase 'L') 						Sunday – Saturday
+	'D'	=> 'D',		// Three letter name 	 							Mon – Sun 
+	
+	
+	// Day of Month
+	'd'	=> 'dd',	// Numeric, with leading zeros						01–31
+	'j'	=> 'd',		// Numeric, without leading zeros 					1–31
+	'S'	=> '',		// The English suffix for the day of the month  	st, nd or th in the 1st, 2nd or 15th. 
+
+));
+
+function acf_convert_date_to_php( $date ) {
+	
+	// vars
+	$ignore = array();
+	
+	
+	// conversion
+	$php_to_js = acf_get_setting('php_to_js_date_formats');
+	
+	
+	// loop over conversions
+	foreach( $php_to_js as $replace => $search ) {
+		
+		// ignore this replace?
+		if( in_array($search, $ignore) ) {
+			
+			continue;
+			
+		}
+		
+		
+		// replace
+		$date = str_replace($search, $replace, $date);
+		
+		
+		// append to ignore
+		$ignore[] = $replace;
+	}
+	
+	
+	// return
+	return $date;
+	
+}
+
+/*
+*  acf_convert_date_to_js
+*
+*  This fucntion converts a date format string from PHP to JS
+*
+*  @type	function
+*  @date	20/06/2014
+*  @since	5.0.0
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+function acf_convert_date_to_js( $date ) {
+	
+	// vars
+	$ignore = array();
+	
+	
+	// conversion
+	$php_to_js = acf_get_setting('php_to_js_date_formats');
+	
+	
+	// loop over conversions
+	foreach( $php_to_js as $search => $replace ) {
+		
+		// ignore this replace?
+		if( in_array($search, $ignore) ) {
+			
+			continue;
+			
+		}
+		
+		
+		// replace
+		$date = str_replace($search, $replace, $date);
+		
+		
+		// append to ignore
+		$ignore[] = $replace;
+	}
+	
+	
+	// return
+	return $date;
+	
+}
+
+
 /*
 *  Hacks
 *
