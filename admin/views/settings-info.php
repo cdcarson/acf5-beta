@@ -77,7 +77,7 @@ extract( $args );
 			
 			<div class="col">
 				<h4><?php _e("Smarter field settings", 'acf'); ?></h4>
-				<p><?php _e("ACF now saves it's field settings as individual post objects", 'acf'); ?></p>
+				<p><?php _e("ACF now saves its field settings as individual post objects", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
