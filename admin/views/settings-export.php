@@ -17,7 +17,7 @@
                 <tbody>
                 	<tr>
                     	<th>
-                    		<label><?php _e('Select Forms', 'acf'); ?></label>
+                    		<label><?php _e('Select Field Groups', 'acf'); ?></label>
                     	</th>
 						<td>
 							<?php 

@@ -14,7 +14,7 @@ $readonly = $active ? 1 : 0;
 ?>
 <div class="wrap acf-settings-wrap">
 	
-	<h2><?php __('Updates', 'acf'); ?></h2>
+	<h2><?php _e('Updates', 'acf'); ?></h2>
 	
 	<div class="acf-box">
 		<div class="title">
