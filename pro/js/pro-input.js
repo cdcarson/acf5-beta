@@ -1754,7 +1754,7 @@
 			var frame = acf.media.upload_popup({
 				title		: acf._e('gallery', 'select'),
 				type		: 'image',
-				multiple	: 1,
+				multiple	: 'add',
 				uploadedTo	: ( library == 'uploadedTo' ) ? acf.get('post_id') : 0,
 				activate	: function( frame ){
 					
