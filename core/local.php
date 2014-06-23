@@ -178,11 +178,15 @@ class acf_local {
 		
 		
 		// don't allow overrides
-		if( acf_is_local_field($field['key']) ) {
+		// edit: some manually created fields (via .php) used duplicate keys (copy of origional field).
+		/*
+if( acf_is_local_field($field['key']) ) {
 			
 			return;	
 			
 		}
+*/
+
 		
 		
 		// vars
@@ -201,12 +205,13 @@ class acf_local {
 		//$field['ancestors'] = array();
 		
 		
-		while( acf_is_local_field($parent) )
-		{
+		while( acf_is_local_field($parent) ) {
+		
 			//$field['ancestors'][] = $parent;
 			
 			$parent = acf_get_local_field( $parent );
 			$parent = $parent['parent'];
+			
 		}
 		
 		//$field['ancestors'][] = $field['field_group'];
@@ -470,6 +475,26 @@ function acf_is_local_field_group( $key ) {
 function acf_get_local_field_group( $key ) {
 	
 	return acf_local()->groups[ $key ];
+	
+}
+
+
+/*
+*  acf_add_local_field
+*
+*  This function will add a $field to the local placeholder
+*
+*  @type	function
+*  @date	10/03/2014
+*  @since	5.0.0
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+function acf_add_local_field( $field ) {
+	
+	acf_local()->add_field( $field );
 	
 }
 
