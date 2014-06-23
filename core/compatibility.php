@@ -355,6 +355,49 @@ class acf_compatibility {
 		// some location rules have changed
 		if( !empty($field_group['location']) ) {
 			
+			// location rules changed to groups in v...
+			if( isset($field_group['location']['rules']) ) {
+				
+				// extract location
+				$location = acf_extract_var( $field_group, 'location' );
+				
+				
+				// reset location
+				$field_group['location'] = array();
+				
+				
+				// vars
+				$group = 0;
+		 		$all_or_any = $location['allorany'];
+		 		
+		 		
+		 		// loop over rules
+		 		if( !empty($location['rules']) ) {
+			 		
+			 		foreach( $location['rules'] as $rule ) {
+				 		
+					 	// sperate groups?
+					 	if( $all_or_any == 'any' ) {
+					 	
+						 	$group++;
+						 	
+					 	}
+					 	
+					 	
+					 	// add to group
+					 	$field_group['location'][ $group ][] = $rule;
+			 	
+				 	}
+				 	
+		 		}
+			 	
+			 	
+			 	// reset keys
+				$field_group['location'] = array_values($field_group['location']);
+			 	
+			}
+			
+			
 			// param changes
 		 	$param_replace = array(
 		 		'taxonomy'		=> 'post_taxonomy',
