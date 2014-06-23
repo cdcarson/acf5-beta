@@ -185,7 +185,7 @@ class acf_field_group {
 			'sibling_fields'		=>	__("Sibling fields",'acf'),
 			'hide_show_all'			=>	__("Hide / Show All",'acf'),
 			'move_field'			=>	__("Move Custom Field",'acf'),
-			'move_field_warning'	=>	__("This field cannot be moved until it's changes have been saved",'acf'),
+			'move_field_warning'	=>	__("This field cannot be moved until its changes have been saved",'acf'),
 			'null'					=>	__("Null",'acf'),
 		));
 		

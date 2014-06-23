@@ -269,7 +269,7 @@ function acf_get_field_group( $selector = false ) {
 /*
 *  _acf_get_field_group_by_id
 *
-*  This function will get a field group by it's ID
+*  This function will get a field group by its ID
 *
 *  @type	function
 *  @date	27/02/2014
@@ -347,7 +347,7 @@ function _acf_get_field_group_by_id( $post_id = 0 ) {
 /*
 *  _acf_get_field_group_by_key
 *
-*  This function will get a field group by it's key
+*  This function will get a field group by its key
 *
 *  @type	function
 *  @date	27/02/2014
@@ -621,7 +621,7 @@ function acf_get_field_count( $field_group_id ) {
 /*
 *  acf_delete_field_group
 *
-*  This function will delete the field group and it's fields from the DB
+*  This function will delete the field group and its fields from the DB
 *
 *  @type	function
 *  @date	5/12/2013
@@ -680,7 +680,7 @@ function acf_delete_field_group( $selector = 0 ) {
 /*
 *  acf_trash_field_group
 *
-*  This function will trash the field group and it's fields
+*  This function will trash the field group and its fields
 *
 *  @type	function
 *  @date	5/12/2013
@@ -739,7 +739,7 @@ function acf_trash_field_group( $selector = 0 ) {
 /*
 *  acf_untrash_field_group
 *
-*  This function will restore from trash the field group and it's fields
+*  This function will restore from trash the field group and its fields
 *
 *  @type	function
 *  @date	5/12/2013

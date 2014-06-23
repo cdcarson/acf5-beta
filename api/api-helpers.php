@@ -1025,7 +1025,7 @@ function acf_verify_nonce( $nonce, $post_id = 0 ) {
 			$_POST['_acfnonce'] = false;
 			
 		
-			// if we are currently saving a revision, allow it's parent to bypass this validation
+			// if we are currently saving a revision, allow its parent to bypass this validation
 			if( $post_id )
 			{
 				if( $parent = wp_is_post_revision($post_id) )

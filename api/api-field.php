@@ -490,7 +490,7 @@ function acf_get_field( $selector = null ) {
 /*
 *  _acf_get_field_by_id
 *
-*  This function will get a field via it's ID
+*  This function will get a field via its ID
 *
 *  @type	function
 *  @date	27/02/2014
@@ -574,7 +574,7 @@ function _acf_get_field_by_id( $post_id = 0 ) {
 /*
 *  _acf_get_field_by_key
 *
-*  This function will get a field via it's key
+*  This function will get a field via its key
 *
 *  @type	function
 *  @date	27/02/2014
@@ -638,7 +638,7 @@ function _acf_get_field_by_key( $key = '' ) {
 /*
 *  _acf_get_field_by_name
 *
-*  This function will get a field via it's key
+*  This function will get a field via its key
 *
 *  @type	function
 *  @date	27/02/2014

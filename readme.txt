@@ -186,7 +186,7 @@ http://support.advancedcustomfields.com/
 * Field group: Add 'toggle all' option to hide from screen - http://support.advancedcustomfields.com/forums/topic/hidecheck-all-single-checkbox-when-hiding-items-from-pagepost-edit-screen/
 * Taxonomy field: Add new filter for wp_list_categories args - http://support.advancedcustomfields.com/forums/topic/taxonomy-field-type-filter-to-only-show-parents/
 * Taxonomy field: Fixed JS bug causing attachment field groups to disappear due to incorrect AJAX location data - http://support.advancedcustomfields.com/forums/topic/taxonomy-checkboxes/
-* WYSIWYG field: Fixed JS bug where formatting is removed when drag/drop it's repeater row
+* WYSIWYG field: Fixed JS bug where formatting is removed when drag/drop its repeater row
 * Tab field: Corrected minor JS bugs with conditional logic - http://support.advancedcustomfields.com/forums/topic/tabs-logic-hide-issue/
 * Relationship field: Values now save correctly as an array of strings (for LIKE querying)
 * Post object field: Values now save correctly as an array of strings (for LIKE querying)
@@ -483,7 +483,7 @@ http://support.advancedcustomfields.com/
 * [Added] Add compatibility for Duplicate Post plugin
 * [Added] Add new params to acf_form function - http://support.advancedcustomfields.com/discussion/3445/issue-with-the-acf_form-array
 * [Updated] Increase date picker range to 100
-* [Fixed] WYSIWYG looses formatting when it's row gets reordered (in a repeater / flexible content field)
+* [Fixed] WYSIWYG looses formatting when its row gets reordered (in a repeater / flexible content field)
 * [Fixed] Fix has_sub_field break issue - http://support.advancedcustomfields.com/discussion/3528/ability-to-reset-has_sub_field
 * [Fixed] Fix Textarea / Text encoding bugs - http://support.advancedcustomfields.com/discussion/comment/5147#Comment_5147
 * [Added] Add publish status for field groups - http://support.advancedcustomfields.com/discussion/3695/draft-status-for-field-groups
