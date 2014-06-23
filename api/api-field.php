@@ -1265,6 +1265,10 @@ function acf_prepare_fields_for_import( $fields = false ) {
 	}
 	
 	
+	// re-index array
+	$fields = array_values($fields);
+	
+	
 	// vars
 	$i = 0;
 	
