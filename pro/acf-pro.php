@@ -19,6 +19,11 @@ class acf_pro {
 	
 	function __construct() {
 		
+		// update setting
+		acf_update_setting( 'pro', true );
+		acf_update_setting( 'name', __('Advanced Custom Fields PRO', 'acf') );
+		
+
 		// api
 		acf_include('pro/api/api-pro.php');
 		acf_include('pro/api/api-options-page.php');
@@ -294,9 +299,18 @@ class acf_pro {
 			// extract sub fields
 			$sub_fields = acf_extract_var( $field, 'sub_fields');
 			
+			
+			// reset field setting
+			$field['sub_fields'] = array();
+			
+			
 			if( !empty($sub_fields) ) {
 			
-				foreach( $sub_fields as $sub_field ) {
+				foreach( array_keys($sub_fields) as $i ) {
+					
+					// extract sub field
+					$sub_field = acf_extract_var( $sub_fields, $i );
+							
 					
 					// attributes
 					$sub_field['parent'] = $field['key'];
@@ -309,24 +323,47 @@ class acf_pro {
 				
 			}
 			
+		} elseif( $field['type'] == 'flexible_content' ) {
 			
-		}
-		elseif( $field['type'] == 'flexible_content' ) {
-			
+			// extract layouts
 			$layouts = acf_extract_var( $field, 'layouts');
 			
+			
+			// reset field setting
+			$field['layouts'] = array();
+			
+			
+			// validate layouts
 			if( !empty($layouts) ) {
 				
-				$field['layouts'] = array();
-				
-				foreach( $layouts as $layout ) {
+				// loop over layouts
+				foreach( array_keys($layouts) as $i ) {
+					
+					// extract layout
+					$layout = acf_extract_var( $layouts, $i );
+					
+					
+					// get valid layout (fixes ACF4 export code bug undefined index 'key')
+					if( empty($layout['key']) ) {
+						
+						$layout['key'] = uniqid();
+						
+					}
+					
 					
 					// extract sub fields
 					$sub_fields = acf_extract_var( $layout, 'sub_fields');
 					
+					
+					// validate sub fields
 					if( !empty($sub_fields) ) {
 						
-						foreach( $sub_fields as $sub_field ) {
+						// loop over sub fields
+						foreach( array_keys($sub_fields) as $j ) {
+							
+							// extract sub field
+							$sub_field = acf_extract_var( $sub_fields, $j );
+							
 							
 							// attributes
 							$sub_field['parent'] = $field['key'];
@@ -409,11 +446,6 @@ class acf_pro {
 
 // instantiate
 new acf_pro();
-
-
-// update setting
-acf_update_setting( 'pro', true );
-acf_update_setting( 'name', __('Advanced Custom Fields PRO', 'acf') );
 
 
 // end class
