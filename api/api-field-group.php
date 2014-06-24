@@ -868,6 +868,11 @@ function acf_get_field_group_style( $field_group ) {
 		$e .= '#formatdiv, #screen-meta label[for=formatdiv-hide] {display: none;} ';
 	}
 	
+	if( in_array('page_attributes',$field_group['hide_on_screen']) )
+	{
+		$e .= '#pageparentdiv {display: none;} ';
+	}
+
 	if( in_array('featured_image',$field_group['hide_on_screen']) )
 	{
 		$e .= '#postimagediv, #screen-meta label[for=postimagediv-hide] {display: none;} ';

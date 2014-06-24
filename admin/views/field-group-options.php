@@ -114,6 +114,7 @@ if( !acf_is_field_group_key( $field_group['key']) )
 				'slug'				=>	__("Slug", 'acf'),
 				'author'			=>	__("Author", 'acf'),
 				'format'			=>	__("Format", 'acf'),
+				'page_attributes'	=>	__("Page Attributes", 'acf'),
 				'featured_image'	=>	__("Featured Image", 'acf'),
 				'categories'		=>	__("Categories", 'acf'),
 				'tags'				=>	__("Tags", 'acf'),
