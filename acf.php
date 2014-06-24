@@ -159,78 +159,8 @@ class acf {
 		
 			
 		// actions
-		add_action('plugins_loaded',	array($this, 'wp_plugins_loaded'), 99);
-		add_action('setup_theme',		array($this, 'wp_setup_theme'), 99);
-		add_action('after_setup_theme',	array($this, 'wp_after_setup_theme'), 5);
-		add_action('init',				array($this, 'wp_init'), 5);
-		add_filter('posts_where',		array($this, 'wp_posts_where'), 10, 2 );
-		
-	}
-	
-
-	
-	/*
-	*  wp_plugins_loaded
-	*
-	*  This function will fire once all plugins have loaded
-	*
-	*  @type	function
-	*  @date	5/03/2014
-	*  @since	5.0.0
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-	
-	function wp_plugins_loaded() {
-		
-		// wpml
-		if( defined('ICL_SITEPRESS_VERSION') ) {
-		
-			acf_include('core/wpml.php');
-			
-		}
-		
-	}
-	
-	
-	/*
-	*  wp_setup_theme
-	*
-	*  This function will fire before the functions.php file is read
-	*
-	*  @type	function
-	*  @date	10/03/2014
-	*  @since	5.0.0
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-	
-	function wp_setup_theme() {
-		
-		acf_update_setting('setup_theme', true);
-		
-	}
-	
-	
-	
-	/*
-	*  wp_after_setup_theme
-	*
-	*  This function will fire after the functions.php file is read
-	*
-	*  @type	function
-	*  @date	10/03/2014
-	*  @since	5.0.0
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-	
-	function wp_after_setup_theme() {
-		
-		$this->complete();
+		add_action('init',			array($this, 'wp_init'), 5);
+		add_filter('posts_where',	array($this, 'wp_posts_where'), 10, 2 );
 		
 	}
 	
@@ -250,9 +180,9 @@ class acf {
 	
 	function complete() {
 		
-		// bail early if actions have not passed 'setup_theme'
-		if( ! acf_get_setting('setup_theme') ) {
-		
+		// bail early if actions have not passed 'plugins_loaded'
+		if( ! did_action('plugins_loaded') ) {
+			
 			return;
 			
 		}
@@ -268,6 +198,14 @@ class acf {
 		
 		// update setting
 		acf_update_setting('complete', true);
+		
+		
+		// wpml
+		if( defined('ICL_SITEPRESS_VERSION') ) {
+		
+			acf_include('core/wpml.php');
+			
+		}
 		
 		
 		// action for 3rd party customization
@@ -290,8 +228,12 @@ class acf {
 	*  @return	N/A
 	*/
 	
-	function wp_init()
-	{
+	function wp_init() {
+		
+		// complete loading of ACF files
+		$this->complete();
+		
+		
 		// Create post type 'acf-field-group'
 		register_post_type( 'acf-field-group', array(
 			'labels'			=> array(

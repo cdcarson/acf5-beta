@@ -114,6 +114,7 @@ http://support.advancedcustomfields.com/
 * Added AJAX search functionality for Post Object, taxonomy, user and select fields
 * Added JSON read/write functionality to automatically save field groups to files (saves DB query time)
 * Added JSON import/export functionality to replace old XML style
+* Aded grouped conditional logic rules
 * New location rules allow field groups on comments
 * New location rules allow field groups on user (including registration and bbPress)
 * New location rules allow field groups on widgets
@@ -131,6 +132,10 @@ http://support.advancedcustomfields.com/
 * New functions for options page allow creation of both parent and child menu pages
 * Date picker field: Removed save_format setting. Values now save as Y:m:d h:i:s
 * Date picker field: Added return_format setting
+* Textarea field: Added new_lines setting
+* Gallery field: Added min and max selection settings
+* Select field: Added Stylised UI setting
+* Select field: Added Lazy Load AJAX setting
 
 = 4.3.4 =
 * Post Object field: Fixed get_pages bug cuasing 'pages' to not appear

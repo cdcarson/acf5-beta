@@ -44,8 +44,10 @@ class acf_pro {
 		}
 		
 		
-		// includes (admin only)
-		add_action('acf/include_field_types',					array($this, 'include_field_types'));
+		// fields
+		acf_include('pro/fields/repeater.php');
+		acf_include('pro/fields/flexible-content.php');
+		acf_include('pro/fields/gallery.php');
 		
 		
 		// actions
@@ -64,28 +66,6 @@ class acf_pro {
 		
 		// add-ons
 		add_filter('acf/is_add_on_active/slug=acf-pro',			'__return_true');
-	}
-	
-	
-	/*
-	*  include_field_types
-	*
-	*  This function will include all field files
-	*
-	*  @type	function
-	*  @date	28/09/13
-	*  @since	5.0.0
-	*
-	*  @param	N/A
-	*  @return	N/A
-	*/
-	
-	function include_field_types() {
-		
-		acf_include('pro/fields/repeater.php');
-		acf_include('pro/fields/flexible-content.php');
-		acf_include('pro/fields/gallery.php');
-		
 	}
 	
 	
