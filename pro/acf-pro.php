@@ -400,32 +400,27 @@ class acf_pro {
 	function render_field_settings( $field ) {
 		
 		// bail early if doing ajax
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		/*
+if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			
 			return;
 			
 		}
 		
 		
+*/
 		// vars
 		$setting = array(
 			'label'		=> __('Column Width','acf'),
 			'type'		=> 'number',
 			'name'		=> 'column_width',
 			'append'	=> '%',
+			'disabled'	=> 1
 		);
 		
 		
-		// set disabled
-		if( ! isset($field['column_width']) ) {
-		
-			$setting['disabled'] = 1;
-		
-		}
-		
-		
 		// add setting
-		acf_render_field_setting( $field, $setting, true );
+		acf_render_field_setting( $field, $setting );
 		
 	}
 	 

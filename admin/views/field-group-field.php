@@ -129,8 +129,8 @@ $metas = array(
 					'prefix'		=> $field['prefix'],
 					'value'			=> $field['required'],
 					'choices'		=> array(
-										1	=> __("Yes",'acf'),
-										0	=> __("No",'acf'),
+						1				=> __("Yes",'acf'),
+						0				=> __("No",'acf'),
 					),
 					'layout'		=> 'horizontal',
 				), 'tr');
