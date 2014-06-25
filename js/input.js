@@ -1121,7 +1121,7 @@ get_field_data : function( $el, name ){
 	
 	$.fn.outerHTML = function() {
 	    
-	    return $(this).clone().wrap('<div>').parent().html();
+	    return $(this).get(0).outerHTML;
 	    
 	}
 	
@@ -5094,7 +5094,7 @@ acf.add_action('ready append', function( $el ){
 ********************************************** */
 
 (function($){
-        
+    
 	acf.validation = {
 		
 		// vars

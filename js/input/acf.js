@@ -861,7 +861,7 @@ get_field_data : function( $el, name ){
 	
 	$.fn.outerHTML = function() {
 	    
-	    return $(this).clone().wrap('<div>').parent().html();
+	    return $(this).get(0).outerHTML;
 	    
 	}
 	

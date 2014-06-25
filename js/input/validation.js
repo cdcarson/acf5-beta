@@ -1,5 +1,5 @@
 (function($){
-        
+    
 	acf.validation = {
 		
 		// vars

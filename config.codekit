@@ -1561,7 +1561,7 @@
 		},
 	"\/js\/input\/validation.js": {
 		"fileType": 64,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/input\/validation.js",
 		"outputAbbreviatedPath": "\/js\/input\/validation.min.js",
@@ -1572,7 +1572,7 @@
 		},
 	"\/js\/input\/wysiwyg.js": {
 		"fileType": 64,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/input\/wysiwyg.js",
 		"outputAbbreviatedPath": "\/js\/input\/wysiwyg.min.js",
@@ -1843,6 +1843,18 @@
 			"linkedFileAbbreviatedPath": "\/js\/input\/tab.js",
 			"position": 13,
 			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/input\/validation.js",
+			"position": 14,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/input\/wysiwyg.js",
+			"position": 15,
+			"type": 1
 			}
 		],
 	"\/js\/input\/_listener.min.js": [
@@ -1928,6 +1940,18 @@
 			"followForSyntaxChecking": 1,
 			"linkedFileAbbreviatedPath": "\/js\/input\/tab.js",
 			"position": 13,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/input\/validation.js",
+			"position": 14,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/input\/wysiwyg.js",
+			"position": 15,
 			"type": 1
 			}
 		]
