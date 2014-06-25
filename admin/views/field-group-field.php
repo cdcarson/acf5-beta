@@ -143,7 +143,6 @@ $metas = array(
 				// load view
 				acf_get_view('field-group-field-conditional-logic', array( 'field' => $field ));
 				
-				
 				?>
 				<tr class="field_save">
 					<td class="acf-label"></td>

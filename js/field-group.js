@@ -1208,6 +1208,7 @@
 				$el			= $tbody.closest('.field'),
 				$parent		= $el.parent().closest('.field'),
 				
+				key			= $el.attr('data-key'),
 				old_type	= $el.attr('data-type'),
 				new_type	= $select.val();
 				
@@ -1225,19 +1226,42 @@
 			}
 			
 			
-			// hide and disable current settings
-			$tbody.children('tr[data-setting]').hide().find('[name]').attr('disabled', 'true');
+			// get settings
+			var $settings = $tbody.children('tr[data-setting="' + old_type + '"]'),
+				html = '';
+			
+			
+			// populate settings html
+			$settings.each(function(){
 				
+				html += $(this).outerHTML();
+				
+			});
+			
+			
+			// remove settings
+			$settings.remove();
+			
+			
+			// save field settings html
+			acf.update( key + '_settings_' + old_type, html );
+			
 			
 			// render field
-			this.render_field( $select.closest('.field') );
+			this.render_field( $el );
 			
 			
 			// show field options if they already exist
-			if( $tbody.children('tr[data-setting="' + new_type + '"]').exists() )
-			{
-				// show and enable options
-				$tbody.children('tr[data-setting="' + new_type + '"]').show().find('[name]').removeAttr('disabled');
+			html = acf.get( key + '_settings_' + new_type );
+			
+			if( html ) {
+				
+				// append settings
+				$tbody.children('.acf-field[data-name="conditional_logic"]').before( html );
+				
+				
+				// remove field settings html
+				acf.update( key + '_settings_' + new_type, '' );
 				
 				
 				// trigger event

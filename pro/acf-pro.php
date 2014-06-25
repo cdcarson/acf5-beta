@@ -398,7 +398,15 @@ class acf_pro {
 	*/
 	
 	function render_field_settings( $field ) {
-
+		
+		// bail early if doing ajax
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			
+			return;
+			
+		}
+		
+		
 		// vars
 		$setting = array(
 			'label'		=> __('Column Width','acf'),
@@ -417,7 +425,7 @@ class acf_pro {
 		
 		
 		// add setting
-		acf_render_field_setting( $field, $setting );
+		acf_render_field_setting( $field, $setting, true );
 		
 	}
 	 

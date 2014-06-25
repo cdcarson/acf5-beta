@@ -611,27 +611,29 @@ function acf_render_field_option( $type, $field )
 *  @return	n/a
 */
 
-function acf_render_field_setting( $field, $setting ) {
+function acf_render_field_setting( $field, $setting, $global = false ) {
 	
 	// vars
-	$atts = array( 
-		'data-setting' => $field['type']
-	);
+	$atts = array();
 	
 	
-	// tab field contains no name / prefix
-	if( !empty($setting['name']) ) {
+	// if this setting is not global, add a data attribute
+	if( ! $global ) {
 		
-		// copy across prefix
-		$setting['prefix'] = $field['prefix'];
+		$atts['data-setting'] = $field['type'];
+		
+	}
+	
+	
+	// copy across prefix
+	$setting['prefix'] = $field['prefix'];
 		
 		
-		// copy across value
-		if( isset($field[ $setting['name'] ]) ) {
-			
-			$setting['value'] = $field[ $setting['name'] ];
-			
-		}
+	// copy across the $setting value
+	// Note: tab field contains no name for it's $setting (its just a message)
+	if( $setting['name'] && isset($field[ $setting['name'] ]) ) {
+		
+		$setting['value'] = $field[ $setting['name'] ];
 		
 	}
 	
