@@ -189,10 +189,11 @@ class acf_compatibility {
 	
 	function get_valid_textarea_field( $field ) {
 		
-		// save_format is now return_format
-		if( $field['formatting'] == 'br' ) {
+		// formatting has been removed
+		$formatting = acf_extract_var( $field, 'formatting' );
+		
+		if( $formatting === 'br' ) {
 			
-			$field['formatting'] = 'none';
 			$field['new_lines'] = 'br';
 			
 		}

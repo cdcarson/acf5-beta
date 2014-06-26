@@ -36,7 +36,6 @@ class acf_field_text extends acf_field {
 		$this->label = __("Text",'acf');
 		$this->defaults = array(
 			'default_value'	=> '',
-			'formatting' 	=> 'html',
 			'maxlength'		=> '',
 			'placeholder'	=> '',
 			'prepend'		=> '',
@@ -188,71 +187,6 @@ class acf_field_text extends acf_field {
 			'name'			=> 'maxlength',
 		));
 		
-		
-		// formatting
-		acf_render_field_setting( $field, array(
-			'label'			=> __('Formatting','acf'),
-			'instructions'	=> __('Effects value on front end','acf'),
-			'type'			=> 'select',
-			'name'			=> 'formatting',
-			'choices'		=> array(
-				'html'			=> __("Render HTML as tags",'acf'),
-				'none'			=> __("Render HTML as plain text",'acf')
-			)
-		));
-		
-	}
-	
-	
-	/*
-	*  format_value()
-	*
-	*  This filter is appied to the $value after it is loaded from the db and before it is passed to the render_field action
-	*
-	*  @type	filter
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	$value (mixed) the value which was loaded from the database
-	*  @param	$post_id (mixed) the $post_id from which the value was loaded
-	*  @param	$field (array) the field array holding all the field options
-	*  @param	$template (boolean) true if value requires formatting for front end template function
-	*
-	*  @return	$value (mixed) the modified value
-	*/
-	
-	function format_value( $value, $post_id, $field, $template ) {
-		
-		// bail early if no value
-		if( empty($value) || !is_string($value) ) {
-		
-			return $value;
-			
-		}
-		
-		
-		// bail early if not formatting for template use
-		if( !$template ) {
-			
-			return $value;
-			
-		}
-		
-		
-		// format
-		if( $field['formatting'] == 'none' ) {
-		
-			$value = htmlspecialchars($value, ENT_QUOTES);
-			
-		} elseif( $field['formatting'] == 'html' ) {
-		
-			// do nothing
-			
-		}
-		
-		
-		// return
-		return $value;
 	}
 	
 }

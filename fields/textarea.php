@@ -36,7 +36,6 @@ class acf_field_textarea extends acf_field {
 		$this->label = __("Text Area",'acf');
 		$this->defaults = array(
 			'default_value'	=> '',
-			'formatting' 	=> 'html',
 			'new_lines'		=> '',
 			'maxlength'		=> '',
 			'placeholder'	=> '',
@@ -191,21 +190,6 @@ class acf_field_textarea extends acf_field {
 			)
 		));
 		
-		
-		// formatting
-		acf_render_field_setting( $field, array(
-			'label'			=> __('Formatting','acf'),
-			'instructions'	=> __('Controls how HTML is rendered','acf'),
-			'type'			=> 'select',
-			'name'			=> 'formatting',
-			'choices'		=> array(
-				'html'			=> __("Render HTML as tags",'acf'),
-				'none'			=> __("Render HTML as plain text",'acf')
-			)
-		));
-		
-		
-		
 	}
 	
 	
@@ -240,18 +224,6 @@ class acf_field_textarea extends acf_field {
 		if( !$template ) {
 		
 			return $value;
-			
-		}
-		
-		
-		// format
-		if( $field['formatting'] == 'none' ) {
-		
-			$value = htmlspecialchars($value, ENT_QUOTES);
-			
-		} elseif( $field['formatting'] == 'html' ) {
-			
-			// do nothing
 			
 		}
 		
