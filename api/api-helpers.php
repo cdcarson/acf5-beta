@@ -836,16 +836,21 @@ function acf_hidden_input( $atts ) {
 */
 
 function acf_extract_var( &$array, $key ) {
-
+	
+	// vars
 	$r = null;
 	
 	
-	if( array_key_exists($key, $array) )
-	{
+	// check if exists
+	if( array_key_exists($key, $array) ) {
+	
 		$r = $array[ $key ];
 		unset( $array[ $key ] );
+	
 	}
-
+	
+	
+	// return
 	return $r;
 }
 
