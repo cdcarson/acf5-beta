@@ -347,6 +347,7 @@ class acf_field_select extends acf_field {
 		
 		// encode choices (convert from array)
 		$field['choices'] = acf_encode_choices($field['choices']);
+		$field['default_value'] = acf_encode_choices($field['default_value']);
 		
 		
 		// choices
@@ -484,8 +485,10 @@ function format_value( $value, $post_id, $field, $template ) {
 		
 		// decode choices (convert to array)
 		$field['choices'] = acf_decode_choices($field['choices']);
+		$field['default_value'] = acf_decode_choices($field['default_value']);
 		
 		
+		// return
 		return $field;
 	}
 	
