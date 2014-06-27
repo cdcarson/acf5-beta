@@ -1740,33 +1740,44 @@ get_field_data : function( $el, name ){
 				
 				var exists = $trigger.find('input[value="' + rule.value + '"]:checked').exists();
 				
-				if( rule.operator == "==" ) {
+				if( rule.operator == "==" && exists ) {
 				
-					if( exists ) {
+					return true;
 					
-						return true;
-						
-					}
-					
-				} else {
+				} else if( rule.operator == "!=" && !exists ) {
 				
-					if( ! exists ) {
-					
-						return true;
-						
-					}
+					return true;
 					
 				}
 				
-			} else {
+			} else if( type == 'select' ) {
 				
-				// get val and make sure it is an array
-				var val = $trigger.find('input, textarea, select').last().val();
+				// vars
+				var $select = $trigger.find('select'),
+					data = acf.get_data( $select ),
+					val = [];
 				
-				if( ! $.isArray(val) ) {
 				
-					val = [ val ];
+				if( data.multiple && data.ui ) {
 					
+					$trigger.find('.acf-select2-multi-choice').each(function(){
+						
+						val.push( $(this).val() );
+						
+					});
+					
+				} else if( data.multiple ) {
+					
+					val = $select.val();
+					
+				} else if( data.ui ) {
+					
+					val.push( $trigger.find('input').first().val() );
+					
+				} else {
+					
+					val.push( $select.val() );
+				
 				}
 				
 				

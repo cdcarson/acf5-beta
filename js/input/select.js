@@ -43,7 +43,7 @@
 			{
 				args.formatSelection = function( object, $div ){
 					
-					$div.parent().append('<input type="hidden" name="' + $select.attr('name') + '" value="' + object.id + '" />');
+					$div.parent().append('<input type="hidden" class="acf-select2-multi-choice" name="' + $select.attr('name') + '" value="' + object.id + '" />');
 					
 					return object.text;
 				}
