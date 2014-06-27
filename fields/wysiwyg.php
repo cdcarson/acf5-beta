@@ -272,26 +272,25 @@ class acf_field_wysiwyg extends acf_field {
 		acf_enqueue_uploader();
 		
 		
-		// global
-		global $wp_version;
-		
-		
 		// vars
 		$id = 'wysiwyg-' . $field['id'] . '-' . uniqid();
 		
 		
 		// filter value for editor
+		remove_all_filters( 'acf_the_editor_content' );
+		
 		if( user_can_richedit() ) {
 			
-			add_filter('the_editor_content', 'wp_richedit_pre');
+			add_filter('acf_the_editor_content', 'wp_richedit_pre');
 			
 		} else {
 			
-			add_filter('the_editor_content', 'wp_htmledit_pre');
+			add_filter('acf_the_editor_content', 'wp_htmledit_pre');
 			
 		}
 		
-		$field['value'] = apply_filters( 'the_editor_content', $field['value'] );
+		
+		$field['value'] = apply_filters( 'acf_the_editor_content', $field['value'] );
 		
 		
 		?>
@@ -308,7 +307,7 @@ class acf_field_wysiwyg extends acf_field {
 			</div>
 		</div>
 		<?php
-		
+				
 	}
 	
 	
