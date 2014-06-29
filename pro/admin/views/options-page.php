@@ -47,13 +47,13 @@ $page = acf_get_options_page( $slug );
 						<!-- Update -->
 						<div id="submitdiv" class="postbox">
 							
-							<h3 class="hndle" style="border-bottom:none;"><span><?php _e("Publish",'acf'); ?></span></h3>
+							<h3 class="hndle" style="border-bottom:none;"><span><?php echo apply_filters('acf/options_page/publish_text', __("Publish",'acf'), $slug);?></span></h3>
 							
 							<div id="major-publishing-actions">
 
 								<div id="publishing-action">
 									<span class="spinner"></span>
-									<input type="submit" accesskey="p" value="<?php _e("Save Options",'acf'); ?>" class="button button-primary button-large" id="publish" name="publish">
+									<input type="submit" accesskey="p" value="<?php echo esc_attr(apply_filters('acf/options_page/save_options_text', __("Save Options",'acf'), $slug)); ?>" class="button button-primary button-large" id="publish" name="publish">
 								</div>
 								
 								<div class="clear"></div>
