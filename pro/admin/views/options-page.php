@@ -55,7 +55,11 @@ $page = acf_get_options_page( $slug );
 
 								<div id="publishing-action">
 									<span class="spinner"></span>
-									<input type="submit" accesskey="p" value="<?php echo esc_attr(apply_filters('acf/options_page/save_options_text', __("Save Options",'acf'), $slug)); ?>" class="button button-primary button-large" id="publish" name="publish">
+									<input
+										type="submit"
+										accesskey="p"
+										value="<?php echo esc_attr(apply_filters('acf/options_page/save_options_text', __("Save Options",'acf'), $slug)); ?>"
+										class="button button-primary button-large" id="publish" name="publish">
 								</div>
 
 								<div class="clear"></div>
